@@ -63,10 +63,13 @@
                 if (navigator.userActivation.hasBeenActive) {
                     // 页面进入粘性激活态
                     const v = document.createElement('video')
-                    v.src = './renxi.mp3'
                     v.autoplay = true
                     v.controls = true
                     v.loop = true
+                    const s = document.createElement('source')
+                    s.src = './renxi.mp3'
+                    s.type = 'audio/mp3'
+                    v.appendChild(s)
                     document.body.appendChild(v)
                     clearInterval(t)
                 }
