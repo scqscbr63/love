@@ -19,9 +19,9 @@
 </head>
 
 <body>
-    <audio autoplay="autopaly">
-        <source src="renxi.mp3" type="audio/mp3" />
-    </audio>
+    <!-- <audio autoplay controls loop>
+        <source src="renxi.mp3" />
+    </audio> -->
     <div id="main">
         <div id="error">本页面采用HTML5编辑，目前您的浏览器无法显示，请换成谷歌(<a
                 href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html?hl=zh-CN&brand=CHMI">Chrome</a>)或者火狐(<a
@@ -59,6 +59,20 @@
     </div>
     <script>
         (function () {
+            const t = setInterval(() => {
+                if (navigator.userActivation.hasBeenActive) {
+                    // 页面进入粘性激活态
+                    const v = document.createElement('video')
+                    v.src = './renxi.mp3'
+                    v.autoplay = true
+                    v.controls = true
+                    v.loop = true
+                    document.body.appendChild(v)
+                    clearInterval(t)
+                }
+            }, 1000);
+
+
             var canvas = $('#canvas');
             if (!canvas[0].getContext) {
                 $("#error").show();
